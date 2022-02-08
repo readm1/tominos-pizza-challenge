@@ -9,28 +9,26 @@ export class Pizza {
   }
 
   setName(name: string): void {
-      this.name = name;
+    this.name = name;
   }
 
   setCategory(category: string): void {
-      this.category = category;
+    this.category = category;
   }
 
   setPrice(price: number): void {
-      this.price = price;
+    this.price = price;
   }
 
   getName(): string {
-      return this.name;
+    return this.name;
   }
 
   getCategory(): string {
-      return this.category;
+    return this.category;
   }
 
   getPrice(): number {
-      return this.price;
-  }
-
+    return this.price;
   }
 }
