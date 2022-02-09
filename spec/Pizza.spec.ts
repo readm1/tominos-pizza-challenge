@@ -17,4 +17,14 @@ describe("Pizza", function () {
     pizza.setName("Margherita");
     expect(pizza.name).toBe("Margherita");
   });
+  it("sets the category to Simple Veg", function () {
+    const pizza = new Pizza();
+    pizza.setCategory("Simple Veg");
+    expect(pizza.category).toBe("Simple Veg");
+  });
+  it("sets the price to 2", function () {
+    const pizza = new Pizza();
+    pizza.setPrice(2);
+    expect(pizza.price).toBe(2);
+  });
 });
