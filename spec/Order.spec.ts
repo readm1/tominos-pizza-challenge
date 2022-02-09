@@ -103,24 +103,33 @@ describe("Order", function () {
     );
   });
   it("calculates the cost of the order", function () {
-    const orderCost = new Order();
+    const orderCostNoToppings = new Order();
+    const orderCostOneTopping = new Order();
+    const orderCostTwoToppings = new Order();
     const cheeseNTomato = new Pizza();
     cheeseNTomato.setName("Cheese 'n' Tomato");
     cheeseNTomato.setCategory("SimpleVeg");
     cheeseNTomato.setPrice(2);
-    orderCost.addPizza(cheeseNTomato);
+    orderCostNoToppings.addPizza(cheeseNTomato);
+    orderCostOneTopping.addPizza(cheeseNTomato);
+    orderCostTwoToppings.addPizza(cheeseNTomato);
     const thin = new Crust();
     thin.setName("Thin");
     thin.setPrice(40);
-    orderCost.addCrust(thin);
+    orderCostNoToppings.addCrust(thin);
+    orderCostOneTopping.addCrust(thin);
+    orderCostTwoToppings.addCrust(thin);
+    expect(orderCostOneTopping.calculatePrice()).toBe(2.88); // 2.4 + VAT
     const capsicum = new Topping();
     capsicum.setName("Capsicum");
     capsicum.setPrice(10);
-    orderCost.addTopping(capsicum);
+    orderCostOneTopping.addTopping(capsicum);
+    orderCostTwoToppings.addTopping(capsicum);
+    expect(orderCostOneTopping.calculatePrice()).toBe(3); // 2.5 + VAT
     const olives = new Topping();
     olives.setName("Olives");
     olives.setPrice(20);
-    orderCost.addTopping(olives);
-    expect(orderCost.calculatePrice()).toBe(3.24); // 2.7 + VAT
+    orderCostTwoToppings.addTopping(olives);
+    expect(orderCostTwoToppings.calculatePrice()).toBe(3.24); // 2.7 + VAT
   });
 });

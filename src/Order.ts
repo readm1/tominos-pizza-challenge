@@ -15,8 +15,11 @@ export class Order {
   calculatePrice(): number {
     const pizzaPrice = this.pizza.price;
     const crustPrice = this.crust.price / 100;
-    const toppingsPrice =
-      (this.toppings[0].price + this.toppings[1].price) / 100;
+    let toppingsPrice = 0;
+    for (const topping of this.toppings) {
+      toppingsPrice += topping.price;
+    }
+    toppingsPrice /= 100;
     const subtotal = pizzaPrice + crustPrice + toppingsPrice;
     const finalTotal = parseFloat((subtotal * 1.2).toFixed(2));
     return finalTotal;
