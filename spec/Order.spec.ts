@@ -102,4 +102,21 @@ describe("Order", function () {
       jasmine.objectContaining(expectedTopping2)
     );
   });
+  it("calculates the cost of the order", function () {
+    const orderCost = new Order();
+    const cheeseNTomato = new Pizza();
+    cheeseNTomato.setName("Cheese 'n' Tomato");
+    cheeseNTomato.setCategory("SimpleVeg");
+    cheeseNTomato.setPrice(2);
+    orderCost.addPizza(cheeseNTomato);
+    const thin = new Crust();
+    thin.setName("Thin");
+    thin.setPrice(40);
+    orderCost.addCrust(thin);
+    const capsicum = new Topping();
+    capsicum.setName("Capsicum");
+    capsicum.setPrice(10);
+    orderCost.addTopping(capsicum);
+    expect(orderCost.calculatePrice()).toBe(2.5);
+  });
 });
