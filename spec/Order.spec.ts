@@ -117,6 +117,10 @@ describe("Order", function () {
     capsicum.setName("Capsicum");
     capsicum.setPrice(10);
     orderCost.addTopping(capsicum);
-    expect(orderCost.calculatePrice()).toBe(3); // 2.5 + VAT
+    const olives = new Topping();
+    olives.setName("Olives");
+    olives.setPrice(20);
+    orderCost.addTopping(olives);
+    expect(orderCost.calculatePrice()).toBe(3.24); // 2.7 + VAT
   });
 });
