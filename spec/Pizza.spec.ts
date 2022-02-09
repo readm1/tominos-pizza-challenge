@@ -1,33 +1,39 @@
 import { Pizza } from "../src/Pizza";
+const pizza = new Pizza();
+const pizzaGetSet = new Pizza();
+
 describe("Pizza", function () {
   it("default name is blank", function () {
-    const pizza = new Pizza();
     expect(pizza.name).toBe("");
   });
   it("default category is blank", function () {
-    const pizza = new Pizza();
     expect(pizza.category).toBe("");
   });
   it("default price is 0", function () {
-    const pizza = new Pizza();
     expect(pizza.price).toBe(0);
   });
   it("sets the name to Margherita", function () {
-    const pizza = new Pizza();
-    pizza.setName("Margherita");
-    const pizzaName = pizza.getName();
-    expect(pizzaName).toBe("Margherita");
+    pizzaGetSet.setName("Margherita");
+    expect(pizzaGetSet.name).toBe("Margherita");
   });
   it("sets the category to Simple Veg", function () {
-    const pizza = new Pizza();
-    pizza.setCategory("Simple Veg");
-    const pizzaCategory = pizza.getCategory();
-    expect(pizzaCategory).toBe("Simple Veg");
+    pizzaGetSet.setCategory("Simple Veg");
+    expect(pizzaGetSet.category).toBe("Simple Veg");
   });
   it("sets the price to 2", function () {
-    const pizza = new Pizza();
-    pizza.setPrice(2);
-    const pizzaPrice = pizza.getPrice();
+    pizzaGetSet.setPrice(2);
+    expect(pizzaGetSet.price).toBe(2);
+  });
+  it("gets the name of Pizza", function () {
+    const pizzaName = pizzaGetSet.getName();
+    expect(pizzaName).toBe("Margherita");
+  });
+  it("gets the category of Pizza", function () {
+    const pizzaCategory = pizzaGetSet.getCategory();
+    expect(pizzaCategory).toBe("Simple Veg");
+  });
+  it("gets the price of Pizza", function () {
+    const pizzaPrice = pizzaGetSet.getPrice();
     expect(pizzaPrice).toBe(2);
   });
 });
