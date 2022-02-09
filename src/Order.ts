@@ -27,4 +27,16 @@ export class Order {
   addTopping(topping: Topping): void {
     this.toppings.push(topping);
   }
+
+  getPizza(): Pizza {
+    return this.pizza;
+  }
+
+  getCrust(): Crust {
+    return this.crust;
+  }
+
+  getTopping(): Topping[] {
+    return this.toppings;
+  }
 }
