@@ -6,6 +6,7 @@ import { Topping } from "../src/Topping";
 const orderInit = new Order();
 const orderAdd = new Order();
 const orderAddMultiple = new Order();
+const orderGet = new Order();
 
 describe("Order", function () {
   it("default pizza is Pizza object", function () {
@@ -64,5 +65,41 @@ describe("Order", function () {
       jasmine.objectContaining(expectedCorn)
     );
     expect(orderAddMultiple.toppings.length).toBe(2);
+  });
+  it("gets the pizza from the order object", function () {
+    const mexicanGreenWave = new Pizza();
+    mexicanGreenWave.setName("Mexican Green Wave");
+    mexicanGreenWave.setCategory("Exotic Veg");
+    mexicanGreenWave.setPrice(3);
+    orderGet.addPizza(mexicanGreenWave);
+    expect(orderGet.getPizza().name).toBe("Mexican Green Wave");
+    expect(orderGet.getPizza().category).toBe("Exotic Veg");
+    expect(orderGet.getPizza().price).toBe(3);
+  });
+  it("gets the crust from the order object", function () {
+    const pan = new Crust();
+    pan.setName("Pan");
+    pan.setPrice(0);
+    orderGet.addCrust(pan);
+    expect(orderGet.getCrust().name).toBe("Pan");
+    expect(orderGet.getCrust().price).toBe(0);
+  });
+  it("gets the toppings from the order object", function () {
+    const paneer = new Topping();
+    paneer.setName("Paneer");
+    paneer.setPrice(20);
+    orderGet.addTopping(paneer);
+    const cheese = new Topping();
+    cheese.setName("Cheese");
+    cheese.setPrice(30);
+    orderGet.addTopping(cheese);
+    const expectedTopping1 = { name: "Paneer", price: 20 };
+    const expectedTopping2 = { name: "Cheese", price: 30 };
+    expect(orderGet.getTopping()[0]).toEqual(
+      jasmine.objectContaining(expectedTopping1)
+    );
+    expect(orderGet.getTopping()[1]).toEqual(
+      jasmine.objectContaining(expectedTopping2)
+    );
   });
 });
