@@ -12,4 +12,9 @@ describe("Pizza", function () {
     const pizza = new Pizza();
     expect(pizza.price).toBe(0);
   });
+  it("sets the name to Margherita", function () {
+    const pizza = new Pizza();
+    pizza.setName("Margherita");
+    expect(pizza.name).toBe("Margherita");
+  });
 });
