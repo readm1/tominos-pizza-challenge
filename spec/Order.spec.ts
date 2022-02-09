@@ -5,6 +5,7 @@ import { Topping } from "../src/Topping";
 
 const orderInit = new Order();
 const orderAdd = new Order();
+const orderAddMultiple = new Order();
 
 describe("Order", function () {
   it("default pizza is Pizza object", function () {
@@ -44,5 +45,24 @@ describe("Order", function () {
       jasmine.objectContaining(expectedOutput)
     );
     expect(orderAdd.toppings.length).toBe(1);
+  });
+  it("adds multiple toppings to the toppings array", function () {
+    const jalapeno = new Topping();
+    jalapeno.setName("Jalapeno");
+    jalapeno.setPrice(10);
+    orderAddMultiple.addTopping(jalapeno);
+    const corn = new Topping();
+    corn.setName("Corn");
+    corn.setPrice(10);
+    orderAddMultiple.addTopping(corn);
+    const expectedJalapeno = { name: "Jalapeno", price: 10 };
+    const expectedCorn = { name: "Corn", price: 10 };
+    expect(orderAddMultiple.toppings[0]).toEqual(
+      jasmine.objectContaining(expectedJalapeno)
+    );
+    expect(orderAddMultiple.toppings[1]).toEqual(
+      jasmine.objectContaining(expectedCorn)
+    );
+    expect(orderAddMultiple.toppings.length).toBe(2);
   });
 });
