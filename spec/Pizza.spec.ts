@@ -1,16 +1,16 @@
 import { Pizza } from "../src/Pizza";
-const pizza = new Pizza();
+const pizzaInit = new Pizza();
 const pizzaGetSet = new Pizza();
 
 describe("Pizza", function () {
   it("default name is blank", function () {
-    expect(pizza.name).toBe("");
+    expect(pizzaInit.name).toBe("");
   });
   it("default category is blank", function () {
-    expect(pizza.category).toBe("");
+    expect(pizzaInit.category).toBe("");
   });
   it("default price is 0", function () {
-    expect(pizza.price).toBe(0);
+    expect(pizzaInit.price).toBe(0);
   });
   it("sets the name to Margherita", function () {
     pizzaGetSet.setName("Margherita");
