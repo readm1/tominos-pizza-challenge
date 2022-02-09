@@ -7,12 +7,12 @@ const orderInit = new Order();
 
 describe("Order", function () {
   it("default pizza is Pizza object", function () {
-    return expect(orderInit.pizza).toEqual(new Pizza());
+    expect(orderInit.pizza).toEqual(new Pizza());
   });
   it("default crust is Crust object", function () {
-    return expect(orderInit.crust).toEqual(new Crust());
+    expect(orderInit.crust).toEqual(new Crust());
   });
   it("default toppings is empty array", function () {
-    return expect(orderInit.toppings).toEqual([]);
+    expect(orderInit.toppings).toEqual([]);
   });
 });
