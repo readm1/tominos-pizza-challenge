@@ -117,6 +117,6 @@ describe("Order", function () {
     capsicum.setName("Capsicum");
     capsicum.setPrice(10);
     orderCost.addTopping(capsicum);
-    expect(orderCost.calculatePrice()).toBe(2.5);
+    expect(orderCost.calculatePrice()).toBe(3); // 2.5 + VAT
   });
 });

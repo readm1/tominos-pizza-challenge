@@ -13,7 +13,11 @@ export class Order {
   }
 
   calculatePrice(): number {
-    return 0;
+    const pizzaPrice = this.pizza.price;
+    const crustPrice = this.crust.price / 100;
+    const toppingsPrice = this.toppings[0].price / 100;
+    const subtotal = pizzaPrice + crustPrice + toppingsPrice;
+    return subtotal * 1.2;
   }
 
   addPizza(pizza: Pizza): void {
