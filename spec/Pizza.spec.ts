@@ -15,16 +15,19 @@ describe("Pizza", function () {
   it("sets the name to Margherita", function () {
     const pizza = new Pizza();
     pizza.setName("Margherita");
-    expect(pizza.name).toBe("Margherita");
+    const pizzaName = pizza.getName();
+    expect(pizzaName).toBe("Margherita");
   });
   it("sets the category to Simple Veg", function () {
     const pizza = new Pizza();
     pizza.setCategory("Simple Veg");
-    expect(pizza.category).toBe("Simple Veg");
+    const pizzaCategory = pizza.getCategory();
+    expect(pizzaCategory).toBe("Simple Veg");
   });
   it("sets the price to 2", function () {
     const pizza = new Pizza();
     pizza.setPrice(2);
-    expect(pizza.price).toBe(2);
+    const pizzaPrice = pizza.getPrice();
+    expect(pizzaPrice).toBe(2);
   });
 });
