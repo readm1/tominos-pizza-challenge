@@ -9,21 +9,21 @@ const pizzas = [
   ["Peppy Paneer", "Exotic Veg", 3],
 ];
 
-const crusts = {
-  pan: ["Pan", 0],
-  thin: ["Thin", 40],
-  cheeseBurst: ["Cheese Burst", 80],
-};
+const crusts = [
+  ["Pan", 0],
+  ["Thin", 40],
+  ["Cheese Burst", 80],
+];
 
-const toppings = {
-  tomato: ["Tomato", 10],
-  jalapeno: ["Jalapeno", 10],
-  olives: ["Olives", 20],
-  paneer: ["Paneer", 20],
-  capsicum: ["Capsicum", 10],
-  corn: ["Corn", 10],
-  cheese: ["Cheese", 30],
-};
+const toppings = [
+  ["Tomato", 10],
+  ["Jalapeno", 10],
+  ["Olives", 20],
+  ["Paneer", 20],
+  ["Capsicum", 10],
+  ["Corn", 10],
+  ["Cheese", 30],
+];
 
 // ELEMENTS
 
@@ -31,16 +31,42 @@ const containerMenu = document.querySelector(".menu__display");
 
 // Creating DOM Elements
 
-const displayPizza = function (pizzas) {
+const displayPizzas = function (pizzas) {
   pizzas.forEach(function (pizza) {
     const name = pizza[0];
     const category = pizza[1];
     const price = pizza[2];
-    const html = `<div class="menu__display">
+    const html = `<div class="menu__display pizza__display">
     <div class="menu__pizzaName">${name}</div>
     <div class="menu__pizzaDetails">${category} - £${price.toFixed(2)}</div>
   </div>`;
     containerMenu.insertAdjacentHTML("afterbegin", html);
   });
 };
-displayPizza(pizzas);
+displayPizzas(pizzas);
+
+const displayToppings = function (toppings) {
+  toppings.forEach(function (topping) {
+    const name = topping[0];
+    const price = topping[1];
+    const html = `<div class="menu__display topping__display">
+    <div class="menu__toppingName">${name}</div>
+    <div class="menu__toppingPrice">£${(price / 100).toFixed(2)}</div>
+    </div>`;
+    containerMenu.insertAdjacentHTML("afterbegin", html);
+  });
+};
+displayToppings(toppings);
+
+const displayCrusts = function (crusts) {
+  crusts.forEach(function (crust) {
+    const name = crust[0];
+    const price = crust[1];
+    const html = `<div class="menu__display crust__display">
+      <div class="menu__crustName">${name}</div>
+      <div class="menu__crustPrice">£${(price / 100).toFixed(2)}</div>
+      </div>`;
+    containerMenu.insertAdjacentHTML("afterbegin", html);
+  });
+};
+displayToppings(crusts);

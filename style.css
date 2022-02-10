@@ -29,11 +29,15 @@ body {
   display: inline;
 }
 
-.menu__pizzaName {
+.menu__pizzaName,
+.menu__toppingName,
+.menu__crustName {
   font-size: 1.8rem;
 }
 
-.menu__pizzaDetails {
+.menu__pizzaDetails,
+.menu__toppingPrice,
+.menu__crustPrice {
   font-size: 1.2rem;
 }
 
