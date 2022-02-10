@@ -1,21 +1,21 @@
 "use strict";
 
-const pizza = {
-  margherita: ["Margherita", "Simple Veg", 2],
-  cheeseNTomato: ["Cheese 'n' Tomato", "Simple Veg", 2],
-  farmhouse: ["Farmhouse", "Classic Veg", 2.5],
-  vegSupreme: ["Veg Supreme", "Classic Veg", 2.5],
-  mexicanGreenWave: ["Mexican Green Wave", "Exotic Veg", 3],
-  peppyPaneer: ["Peppy Paneer", "Exotic Veg", 3],
-};
+const pizzas = [
+  ["Margherita", "Simple Veg", 2],
+  ["Cheese 'n' Tomato", "Simple Veg", 2],
+  ["Farmhouse", "Classic Veg", 2.5],
+  ["Veg Supreme", "Classic Veg", 2.5],
+  ["Mexican Green Wave", "Exotic Veg", 3],
+  ["Peppy Paneer", "Exotic Veg", 3],
+];
 
-const crust = {
+const crusts = {
   pan: ["Pan", 0],
   thin: ["Thin", 40],
   cheeseBurst: ["Cheese Burst", 80],
 };
 
-const topping = {
+const toppings = {
   tomato: ["Tomato", 10],
   jalapeno: ["Jalapeno", 10],
   olives: ["Olives", 20],
@@ -25,6 +25,25 @@ const topping = {
   cheese: ["Cheese", 30],
 };
 
+// ELEMENTS
+
+const containerMenu = document.querySelector(".menu__display");
+
 // Creating DOM Elements
 
-// const displayPizza = function ()
+const displayPizza = function (pizzas) {
+  pizzas.forEach(function (pizza) {
+    const name = pizza[0];
+    const category = pizza[1];
+    const price = pizza[2];
+    const html = `<div class="menu__display">
+    <div class="menu__pizzaName">Pizza: ${name}</div>
+    <div class="menu__pizzaCategory">Category: ${category}</div>
+    <div class="menu__pizzaPrice">Price: ${price}</div>
+  </div>`;
+    containerMenu.insertAdjacentHTML("afterbegin", html);
+  });
+};
+displayPizza(pizzas);
+
+console.log(pizzas);
