@@ -1,4 +1,8 @@
 "use strict";
+import { Pizza } from "./src/Pizza";
+import { Crust } from "./src/Crust";
+import { Topping } from "./src/Topping";
+import { Order } from "./src/Order";
 
 // Menu
 const pizzas = [
@@ -58,7 +62,7 @@ const displayToppings = function (toppings) {
     containerMenu.insertAdjacentHTML("afterbegin", html);
   });
 };
-// displayToppings(toppings);
+displayToppings(toppings);
 
 const displayCrusts = function (crusts) {
   crusts.forEach(function (crust) {

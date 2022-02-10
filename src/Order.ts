@@ -6,10 +6,12 @@ export class Order {
   pizza: Pizza;
   crust: Crust;
   toppings: Topping[];
+  // price: number;
   constructor() {
     this.toppings = [];
     this.pizza = new Pizza();
     this.crust = new Crust();
+    // this.price = 0;
   }
 
   calculatePrice(): number {

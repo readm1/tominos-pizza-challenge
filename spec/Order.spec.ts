@@ -130,7 +130,7 @@ describe("Order", function () {
     corn.setName("Corn");
     corn.setPrice(10);
     orderCostTwoToppings.addTopping(corn);
-    expect(orderCostTwoToppings.calculatePrice()).toBe(4.92); // 4.1 + VAT
+    expect(orderCostTwoToppings.price).toBe(4.92); // 4.1 + VAT
   });
   it("throws an error if the number of toppings exceeds two", function () {
     const tooManyToppingsOrder = new Order();
