@@ -145,7 +145,6 @@ describe("Order", function () {
     const olives = new Topping();
     olives.setName("Olives");
     olives.setPrice(20);
-
     expect(function () {
       tooManyToppingsOrder.addTopping(olives);
     }).toThrow(new Error("Only possible to add two toppings"));

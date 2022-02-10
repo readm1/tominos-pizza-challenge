@@ -34,7 +34,11 @@ export class Order {
   }
 
   addTopping(topping: Topping): void {
-    this.toppings.push(topping);
+    if (this.toppings.length >= 2) {
+      throw new Error("Only possible to add two toppings");
+    } else {
+      this.toppings.push(topping);
+    }
   }
 
   getPizza(): Pizza {
