@@ -39,4 +39,8 @@ export class Order {
   getTopping(): Topping[] {
     return this.toppings;
   }
+
+  replaceTopping(i: number, newTopping: Topping): void {
+    this.toppings[i - 1] = newTopping;
+  }
 }

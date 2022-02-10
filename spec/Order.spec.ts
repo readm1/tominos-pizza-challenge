@@ -130,10 +130,10 @@ describe("Order", function () {
     const cheese = new Topping();
     cheese.setName("Cheese");
     cheese.setPrice(30);
-    const expected = { name: "Corn", price: 10 };
+    const expected = { name: "Cheese", price: 30 };
     changeTopping1Order.replaceTopping(1, cheese);
-    expect(changeTopping1Order.getTopping()).toEqual(
-      jasmine.objectContaining(expected)
+    expect(changeTopping1Order.getTopping()[0]).toEqual(
+      jasmine.objectContaining(cheese)
     );
   });
 });
