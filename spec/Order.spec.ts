@@ -2,6 +2,8 @@ import { Order } from "../src/Order";
 import { Crust } from "../src/Crust";
 import { Pizza } from "../src/Pizza";
 import { Topping } from "../src/Topping";
+import { Basket } from "../src/Basket";
+import { Console } from "console";
 
 const orderInit = new Order();
 const orderAdd = new Order();
@@ -102,36 +104,6 @@ describe("Order", function () {
       jasmine.objectContaining(expectedTopping2)
     );
   });
-  it("calculates the cost of the order with one, two or three toppings", function () {
-    const orderCostNoToppings = new Order();
-    const orderCostOneTopping = new Order();
-    const orderCostTwoToppings = new Order();
-    const mexicanGreenWave = new Pizza();
-    mexicanGreenWave.setName("Mexican Green Wave");
-    mexicanGreenWave.setCategory("Exotic Veg");
-    mexicanGreenWave.setPrice(3);
-    orderCostNoToppings.addPizza(mexicanGreenWave);
-    orderCostOneTopping.addPizza(mexicanGreenWave);
-    orderCostTwoToppings.addPizza(mexicanGreenWave);
-    const cheeseBurst = new Crust();
-    cheeseBurst.setName("Cheese Burst");
-    cheeseBurst.setPrice(80);
-    orderCostNoToppings.addCrust(cheeseBurst);
-    orderCostOneTopping.addCrust(cheeseBurst);
-    orderCostTwoToppings.addCrust(cheeseBurst);
-    expect(orderCostNoToppings.calculatePrice()).toBe(4.56); // 3.8 + VAT
-    const olives = new Topping();
-    olives.setName("Olives");
-    olives.setPrice(20);
-    orderCostOneTopping.addTopping(olives);
-    orderCostTwoToppings.addTopping(olives);
-    expect(orderCostOneTopping.calculatePrice()).toBe(4.8); // 4 + VAT
-    const corn = new Topping();
-    corn.setName("Corn");
-    corn.setPrice(10);
-    orderCostTwoToppings.addTopping(corn);
-    expect(orderCostTwoToppings.calculatePrice()).toBe(4.92); // 4.1 + VAT
-  });
   it("throws an error if the number of toppings exceeds two", function () {
     const tooManyToppingsOrder = new Order();
     const tomato = new Topping();
@@ -148,5 +120,65 @@ describe("Order", function () {
     expect(function () {
       tooManyToppingsOrder.addTopping(olives);
     }).toThrow(new Error("Only possible to add two toppings"));
+  });
+  it("replaces topping one", function () {
+    const basket = new Basket();
+    const changeTopping1Order = new Order();
+    const corn = new Topping();
+    corn.setName("Corn");
+    corn.setPrice(10);
+    changeTopping1Order.addTopping(corn);
+    const cheese = new Topping();
+    cheese.setName("Cheese");
+    cheese.setPrice(30);
+    changeTopping1Order.replaceTopping(1, cheese);
+    basket.addToBasket(changeTopping1Order);
+    expect(changeTopping1Order.getTopping()[0]).toEqual(
+      jasmine.objectContaining(cheese)
+    );
+    expect(basket.calculatePrice()).toBe(0.36); // 0.30 + VAT
+  });
+  it("replaces topping two", function () {
+    const basket = new Basket();
+    const changeTopping2Order = new Order();
+    const corn = new Topping();
+    corn.setName("Corn");
+    corn.setPrice(10);
+    changeTopping2Order.addTopping(corn);
+    const cheese = new Topping();
+    cheese.setName("Cheese");
+    cheese.setPrice(30);
+    changeTopping2Order.addTopping(cheese);
+    const olives = new Topping();
+    olives.setName("Olives");
+    olives.setPrice(20);
+    changeTopping2Order.replaceTopping(2, olives);
+    basket.addToBasket(changeTopping2Order);
+    expect(changeTopping2Order.getTopping()[1]).toEqual(
+      jasmine.objectContaining(olives)
+    );
+    expect(basket.calculatePrice()).toBe(0.36); // 0.30 + VAT
+  });
+  it("passes User Story 2", function () {
+    const userStory2basket = new Basket();
+    const userStory2Order = new Order();
+    const cheeseNTomato = new Pizza();
+    cheeseNTomato.setName("Cheese 'n' Tomato");
+    cheeseNTomato.setCategory("Simple Veg");
+    cheeseNTomato.setPrice(2);
+    userStory2Order.addPizza(cheeseNTomato);
+    const tomato = new Topping();
+    tomato.setName("Tomato");
+    tomato.setPrice(10);
+    userStory2Order.addTopping(tomato);
+    const olives = new Topping();
+    olives.setName("Olives");
+    olives.setPrice(20);
+    userStory2Order.replaceTopping(1, olives);
+    userStory2basket.addToBasket(userStory2Order);
+    expect(userStory2basket.calculatePrice()).toBe(2.64); // 2.2 + VAT
+    expect(userStory2basket.orders[0].toppings[0]).toEqual(
+      jasmine.objectContaining(olives)
+    );
   });
 });
