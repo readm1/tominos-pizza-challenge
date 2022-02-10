@@ -1,5 +1,6 @@
 "use strict";
 
+// Menu
 const pizzas = [
   ["Margherita", "Simple Veg", 2],
   ["Cheese 'n' Tomato", "Simple Veg", 2],
@@ -25,9 +26,10 @@ const toppings = [
   ["Cheese", 30],
 ];
 
-// ELEMENTS
+// Elements
 
 const containerMenu = document.querySelector(".menu__display");
+const containerApp = document.querySelector(".app");
 
 // Creating DOM Elements
 
@@ -37,7 +39,7 @@ const displayPizzas = function (pizzas) {
     const category = pizza[1];
     const price = pizza[2];
     const html = `<div class="menu__display pizza__display">
-    <div class="menu__pizzaName">${name}</div>
+    <div class="menu__pizzaName" href="${name}">${name}</div>
     <div class="menu__pizzaDetails">${category} - £${price.toFixed(2)}</div>
   </div>`;
     containerMenu.insertAdjacentHTML("afterbegin", html);
@@ -50,23 +52,23 @@ const displayToppings = function (toppings) {
     const name = topping[0];
     const price = topping[1];
     const html = `<div class="menu__display topping__display">
-    <div class="menu__toppingName">${name}</div>
+    <div class="menu__toppingName" href="${name}">${name}</div>
     <div class="menu__toppingPrice">£${(price / 100).toFixed(2)}</div>
     </div>`;
     containerMenu.insertAdjacentHTML("afterbegin", html);
   });
 };
-displayToppings(toppings);
+// displayToppings(toppings);
 
 const displayCrusts = function (crusts) {
   crusts.forEach(function (crust) {
     const name = crust[0];
     const price = crust[1];
     const html = `<div class="menu__display crust__display">
-      <div class="menu__crustName">${name}</div>
+      <div class="menu__crustName" href="${name}">${name}</div>
       <div class="menu__crustPrice">£${(price / 100).toFixed(2)}</div>
       </div>`;
     containerMenu.insertAdjacentHTML("afterbegin", html);
   });
 };
-displayToppings(crusts);
+displayCrusts(crusts);
