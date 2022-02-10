@@ -3,6 +3,7 @@ import { Crust } from "../src/Crust";
 import { Pizza } from "../src/Pizza";
 import { Topping } from "../src/Topping";
 import { Basket } from "../src/Basket";
+import { Console } from "console";
 
 const orderInit = new Order();
 const orderAdd = new Order();
@@ -119,5 +120,20 @@ describe("Order", function () {
     expect(function () {
       tooManyToppingsOrder.addTopping(olives);
     }).toThrow(new Error("Only possible to add two toppings"));
+  });
+  it("replaces topping one", function () {
+    const changeTopping1Order = new Order();
+    const corn = new Topping();
+    corn.setName("Corn");
+    corn.setPrice(10);
+    changeTopping1Order.addTopping(corn);
+    const cheese = new Topping();
+    cheese.setName("Cheese");
+    cheese.setPrice(30);
+    const expected = { name: "Corn", price: 10 };
+    changeTopping1Order.replaceTopping(1, cheese);
+    expect(changeTopping1Order.getTopping()).toEqual(
+      jasmine.objectContaining(expected)
+    );
   });
 });
