@@ -67,14 +67,14 @@ describe("Order", function () {
     expect(orderAddMultiple.toppings.length).toBe(2);
   });
   it("gets the pizza from the order object", function () {
-    const mexicanGreenWave = new Pizza();
-    mexicanGreenWave.setName("Mexican Green Wave");
-    mexicanGreenWave.setCategory("Exotic Veg");
-    mexicanGreenWave.setPrice(3);
-    orderGet.addPizza(mexicanGreenWave);
-    expect(orderGet.getPizza().name).toBe("Mexican Green Wave");
-    expect(orderGet.getPizza().category).toBe("Exotic Veg");
-    expect(orderGet.getPizza().price).toBe(3);
+    const cheeseNTomato = new Pizza();
+    cheeseNTomato.setName("Cheese 'n' Tomato");
+    cheeseNTomato.setCategory("Simple Veg");
+    cheeseNTomato.setPrice(2);
+    orderGet.addPizza(cheeseNTomato);
+    expect(orderGet.getPizza().name).toBe("Cheese 'n' Tomato");
+    expect(orderGet.getPizza().category).toBe("Simple Veg");
+    expect(orderGet.getPizza().price).toBe(2);
   });
   it("gets the crust from the order object", function () {
     const pan = new Crust();
@@ -106,31 +106,31 @@ describe("Order", function () {
     const orderCostNoToppings = new Order();
     const orderCostOneTopping = new Order();
     const orderCostTwoToppings = new Order();
-    const cheeseNTomato = new Pizza();
-    cheeseNTomato.setName("Cheese 'n' Tomato");
-    cheeseNTomato.setCategory("SimpleVeg");
-    cheeseNTomato.setPrice(2);
-    orderCostNoToppings.addPizza(cheeseNTomato);
-    orderCostOneTopping.addPizza(cheeseNTomato);
-    orderCostTwoToppings.addPizza(cheeseNTomato);
-    const thin = new Crust();
-    thin.setName("Thin");
-    thin.setPrice(40);
-    orderCostNoToppings.addCrust(thin);
-    orderCostOneTopping.addCrust(thin);
-    orderCostTwoToppings.addCrust(thin);
-    expect(orderCostOneTopping.calculatePrice()).toBe(2.88); // 2.4 + VAT
-    const capsicum = new Topping();
-    capsicum.setName("Capsicum");
-    capsicum.setPrice(10);
-    orderCostOneTopping.addTopping(capsicum);
-    orderCostTwoToppings.addTopping(capsicum);
-    expect(orderCostOneTopping.calculatePrice()).toBe(3); // 2.5 + VAT
+    const mexicanGreenWave = new Pizza();
+    mexicanGreenWave.setName("Mexican Green Wave");
+    mexicanGreenWave.setCategory("Exotic Veg");
+    mexicanGreenWave.setPrice(3);
+    orderCostNoToppings.addPizza(mexicanGreenWave);
+    orderCostOneTopping.addPizza(mexicanGreenWave);
+    orderCostTwoToppings.addPizza(mexicanGreenWave);
+    const cheeseBurst = new Crust();
+    cheeseBurst.setName("Cheese Burst");
+    cheeseBurst.setPrice(80);
+    orderCostNoToppings.addCrust(cheeseBurst);
+    orderCostOneTopping.addCrust(cheeseBurst);
+    orderCostTwoToppings.addCrust(cheeseBurst);
+    expect(orderCostNoToppings.calculatePrice()).toBe(4.56); // 3.8 + VAT
     const olives = new Topping();
     olives.setName("Olives");
     olives.setPrice(20);
+    orderCostOneTopping.addTopping(olives);
     orderCostTwoToppings.addTopping(olives);
-    expect(orderCostTwoToppings.calculatePrice()).toBe(3.24); // 2.7 + VAT
+    expect(orderCostOneTopping.calculatePrice()).toBe(4.8); // 4 + VAT
+    const corn = new Topping();
+    corn.setName("Corn");
+    corn.setPrice(10);
+    orderCostTwoToppings.addTopping(corn);
+    expect(orderCostTwoToppings.calculatePrice()).toBe(4.92); // 4.1 + VAT
   });
   it("throws an error if the number of toppings exceeds two", function () {
     const tooManyToppingsOrder = new Order();
