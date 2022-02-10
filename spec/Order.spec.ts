@@ -102,7 +102,7 @@ describe("Order", function () {
       jasmine.objectContaining(expectedTopping2)
     );
   });
-  it("calculates the cost of the order", function () {
+  it("calculates the cost of the order with one, two or three toppings", function () {
     const orderCostNoToppings = new Order();
     const orderCostOneTopping = new Order();
     const orderCostTwoToppings = new Order();
@@ -131,5 +131,23 @@ describe("Order", function () {
     olives.setPrice(20);
     orderCostTwoToppings.addTopping(olives);
     expect(orderCostTwoToppings.calculatePrice()).toBe(3.24); // 2.7 + VAT
+  });
+  it("throws an error if the number of toppings exceeds two", function () {
+    const tooManyToppingsOrder = new Order();
+    const tomato = new Topping();
+    tomato.setName("Tomato");
+    tomato.setPrice(10);
+    tooManyToppingsOrder.addTopping(tomato);
+    const cheese = new Topping();
+    cheese.setName("Cheese");
+    cheese.setPrice(30);
+    tooManyToppingsOrder.addTopping(cheese);
+    const olives = new Topping();
+    olives.setName("Olives");
+    olives.setPrice(20);
+
+    expect(function () {
+      tooManyToppingsOrder.addTopping(olives);
+    }).toThrow(new Error("Only possible to add two toppings"));
   });
 });
