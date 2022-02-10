@@ -159,4 +159,26 @@ describe("Order", function () {
     );
     expect(basket.calculatePrice()).toBe(0.36); // 0.30 + VAT
   });
+  it("passes User Story 2", function () {
+    const userStory2basket = new Basket();
+    const userStory2Order = new Order();
+    const cheeseNTomato = new Pizza();
+    cheeseNTomato.setName("Cheese 'n' Tomato");
+    cheeseNTomato.setCategory("Simple Veg");
+    cheeseNTomato.setPrice(2);
+    userStory2Order.addPizza(cheeseNTomato);
+    const tomato = new Topping();
+    tomato.setName("Tomato");
+    tomato.setPrice(10);
+    userStory2Order.addTopping(tomato);
+    const olives = new Topping();
+    olives.setName("Olives");
+    olives.setPrice(20);
+    userStory2Order.replaceTopping(1, olives);
+    userStory2basket.addToBasket(userStory2Order);
+    expect(userStory2basket.calculatePrice()).toBe(2.64); // 2.2 + VAT
+    expect(userStory2basket.orders[0].toppings[0]).toEqual(
+      jasmine.objectContaining(olives)
+    );
+  });
 });
