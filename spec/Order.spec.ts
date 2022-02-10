@@ -122,6 +122,7 @@ describe("Order", function () {
     }).toThrow(new Error("Only possible to add two toppings"));
   });
   it("replaces topping one", function () {
+    const basket = new Basket();
     const changeTopping1Order = new Order();
     const corn = new Topping();
     corn.setName("Corn");
@@ -131,11 +132,14 @@ describe("Order", function () {
     cheese.setName("Cheese");
     cheese.setPrice(30);
     changeTopping1Order.replaceTopping(1, cheese);
+    basket.addToBasket(changeTopping1Order);
     expect(changeTopping1Order.getTopping()[0]).toEqual(
       jasmine.objectContaining(cheese)
     );
+    expect(basket.calculatePrice()).toBe(0.36); // 0.30 + VAT
   });
   it("replaces topping two", function () {
+    const basket = new Basket();
     const changeTopping2Order = new Order();
     const corn = new Topping();
     corn.setName("Corn");
@@ -149,8 +153,10 @@ describe("Order", function () {
     olives.setName("Olives");
     olives.setPrice(20);
     changeTopping2Order.replaceTopping(2, olives);
+    basket.addToBasket(changeTopping2Order);
     expect(changeTopping2Order.getTopping()[1]).toEqual(
       jasmine.objectContaining(olives)
     );
+    expect(basket.calculatePrice()).toBe(0.36); // 0.30 + VAT
   });
 });
