@@ -49,7 +49,9 @@ describe("Basket", function () {
     expect(basket.orders.length).toBe(1);
   });
   it("calculates the cost of the order with one, two or three toppings", function () {
-    const basket = new Basket();
+    const basketNoToppings = new Basket();
+    const basketOneTopping = new Basket();
+    const basketTwoToppings = new Basket();
     const userStory1 = new Order();
     const mexicanGreenWave = new Pizza();
     mexicanGreenWave.setName("Mexican Green Wave");
@@ -60,15 +62,19 @@ describe("Basket", function () {
     cheeseBurst.setName("Cheese Burst");
     cheeseBurst.setPrice(80);
     userStory1.addCrust(cheeseBurst);
+    basketNoToppings.addToBasket(userStory1);
+    expect(basketNoToppings.calculatePrice()).toBe(4.56); // 3.8 + VAT
     const olives = new Topping();
     olives.setName("Olives");
     olives.setPrice(20);
     userStory1.addTopping(olives);
+    basketOneTopping.addToBasket(userStory1);
+    expect(basketOneTopping.calculatePrice()).toBe(4.8); // 4 + VAT
     const corn = new Topping();
     corn.setName("Corn");
     corn.setPrice(10);
     userStory1.addTopping(corn);
-    basket.addToBasket(userStory1);
-    expect(basket.calculatePrice()).toBe(4.92); // 4.1 + VAT
+    basketTwoToppings.addToBasket(userStory1);
+    expect(basketTwoToppings.calculatePrice()).toBe(4.92); // 4.1 + VAT
   });
 });

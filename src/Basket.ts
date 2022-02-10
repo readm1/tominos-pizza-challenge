@@ -13,16 +13,21 @@ export class Basket {
     this.orders.push(order);
   }
 
-  //   calculatePrice(): number {
-  //     const pizzaPrice = this.pizza.price;
-  //     const crustPrice = this.crust.price / 100;
-  //     let toppingsPrice = 0;
-  //     for (const topping of this.toppings) {
-  //       toppingsPrice += topping.price;
-  //     }
-  //     toppingsPrice /= 100;
-  //     const subtotal = pizzaPrice + crustPrice + toppingsPrice;
-  //     const finalTotal = parseFloat((subtotal * 1.2).toFixed(2));
-  //     return finalTotal;
-  //   }
+  calculatePrice(): number {
+    let pizzaPrice = 0;
+    let crustPrice = 0;
+    let toppingsPrice = 0;
+    for (const order of this.orders) {
+      pizzaPrice += order.pizza.price;
+      crustPrice += order.crust.price;
+      for (const topping of order.toppings) {
+        toppingsPrice += topping.price;
+      }
+    }
+    crustPrice /= 100;
+    toppingsPrice /= 100;
+    const subtotal = pizzaPrice + crustPrice + toppingsPrice;
+    const finalTotal = parseFloat((subtotal * 1.2).toFixed(2));
+    return finalTotal;
+  }
 }
