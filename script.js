@@ -37,13 +37,10 @@ const displayPizza = function (pizzas) {
     const category = pizza[1];
     const price = pizza[2];
     const html = `<div class="menu__display">
-    <div class="menu__pizzaName">Pizza: ${name}</div>
-    <div class="menu__pizzaCategory">Category: ${category}</div>
-    <div class="menu__pizzaPrice">Price: ${price}</div>
+    <div class="menu__pizzaName">${name}</div>
+    <div class="menu__pizzaDetails">${category} - £${price.toFixed(2)}</div>
   </div>`;
     containerMenu.insertAdjacentHTML("afterbegin", html);
   });
 };
 displayPizza(pizzas);
-
-console.log(pizzas);

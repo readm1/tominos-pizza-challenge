@@ -20,9 +20,21 @@ body {
 /* MENU */
 .menu {
   grid-row: 2 / span 3;
-  background-color: #fff;
+  /* background-color: #fff; */
   border-radius: 1rem;
   /* overflow: scroll; */
+}
+
+.menu__display {
+  display: inline;
+}
+
+.menu__pizzaName {
+  font-size: 1.8rem;
+}
+
+.menu__pizzaDetails {
+  font-size: 1.2rem;
 }
 
 /* .movements__row {
