@@ -1,8 +1,14 @@
 "use strict";
-import { Pizza } from "./src/Pizza";
-import { Crust } from "./src/Crust";
-import { Topping } from "./src/Topping";
-import { Order } from "./src/Order";
+import { Pizza } from "./src/Pizza.js";
+import { Crust } from "./src/Crust.js";
+import { Topping } from "./src/Topping.js";
+import { Order } from "./src/Order.js";
+
+// Order Elements
+const pizza = new Pizza();
+const crust = new Crust();
+const topping = new Topping();
+const order = new Order();
 
 // Menu
 const pizzas = [
@@ -49,7 +55,6 @@ const displayPizzas = function (pizzas) {
     containerMenu.insertAdjacentHTML("afterbegin", html);
   });
 };
-displayPizzas(pizzas);
 
 const displayToppings = function (toppings) {
   toppings.forEach(function (topping) {
@@ -62,7 +67,6 @@ const displayToppings = function (toppings) {
     containerMenu.insertAdjacentHTML("afterbegin", html);
   });
 };
-displayToppings(toppings);
 
 const displayCrusts = function (crusts) {
   crusts.forEach(function (crust) {
@@ -75,4 +79,10 @@ const displayCrusts = function (crusts) {
     containerMenu.insertAdjacentHTML("afterbegin", html);
   });
 };
-displayCrusts(crusts);
+
+const orderPizza = function () {
+  displayPizzas(pizzas);
+  displayToppings(toppings);
+  displayCrusts(crusts);
+};
+orderPizza();
