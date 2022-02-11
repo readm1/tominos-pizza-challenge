@@ -5,8 +5,12 @@ import { Order } from "./Order";
 import { Basket } from "./Basket";
 
 export class Customer {
-  //   orders: Order[];
+  corporate: boolean;
   constructor() {
-    // this.orders = [];
+    this.corporate = false;
+  }
+
+  setCorporate(boolean: boolean): void {
+    this.corporate = boolean;
   }
 }
