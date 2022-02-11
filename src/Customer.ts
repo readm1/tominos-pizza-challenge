@@ -13,4 +13,8 @@ export class Customer {
   setCorporate(boolean: boolean): void {
     this.corporate = boolean;
   }
+  addToBasket(order: Order, basket: Basket, customer: Customer): void {
+    basket.orders.push(order);
+    basket.customer = customer;
+  }
 }

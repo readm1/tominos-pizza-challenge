@@ -29,7 +29,7 @@ describe("Customer", function () {
     farmhouse.setCategory("Classic Veg");
     farmhouse.setPrice(2.5);
     ninaOrder.addPizza(farmhouse);
-    ninaBasket.addToBasket(ninaOrder);
+    nina.addToBasket(ninaOrder, ninaBasket, nina);
     expect(ninaBasket.calculatePrice()).toBe(2.4); // 2.0 (2.5 * 0.8) + VAT
   });
 });
