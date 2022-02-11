@@ -19,4 +19,17 @@ describe("Customer", function () {
     brianBasket.addToBasket(brianOrder);
     expect(brianBasket.calculatePrice()).toBe(2.4); // 2.0 + VAT
   });
+  it("pays a discounted rate if corporate === true", function () {
+    const nina = new Customer();
+    nina.setCorporate(true);
+    const ninaOrder = new Order();
+    const ninaBasket = new Basket();
+    const farmhouse = new Pizza();
+    farmhouse.setName("Farmhouse");
+    farmhouse.setCategory("Classic Veg");
+    farmhouse.setPrice(2.5);
+    ninaOrder.addPizza(farmhouse);
+    ninaBasket.addToBasket(ninaOrder);
+    expect(ninaBasket.calculatePrice()).toBe(2.4); // 2.0 (2.5 * 0.8) + VAT
+  });
 });
