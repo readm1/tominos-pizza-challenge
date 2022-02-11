@@ -12,10 +12,6 @@ export class Basket {
     this.customer = new Customer();
   }
 
-  addToBasket(order: Order): void {
-    this.orders.push(order);
-  }
-
   calculatePrice(): number {
     let pizzaPrice = 0;
     let crustPrice = 0;
