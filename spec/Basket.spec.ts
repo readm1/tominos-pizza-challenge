@@ -3,29 +3,31 @@ import { Pizza } from "../src/Pizza";
 import { Topping } from "../src/Topping";
 import { Order } from "../src/Order";
 import { Basket } from "../src/Basket";
+import { Customer } from "../src/Customer";
 
 describe("Basket", function () {
   it("adds an Order object to the Basket", function () {
-    const basket = new Basket();
-    const basketPizza = new Order();
+    const jeremy = new Customer();
+    const jeremyBasket = new Basket();
+    const jeremyOrder = new Order();
     const peppyPaneer = new Pizza();
     peppyPaneer.setName("Peppy Paneer");
     peppyPaneer.setCategory("Exotic Veg");
     peppyPaneer.setPrice(3);
-    basketPizza.addPizza(peppyPaneer);
+    jeremyOrder.addPizza(peppyPaneer);
     const pan = new Crust();
     pan.setName("Pan");
     pan.setPrice(0);
-    basketPizza.addCrust(pan);
+    jeremyOrder.addCrust(pan);
     const olives = new Topping();
     olives.setName("Olives");
     olives.setPrice(20);
-    basketPizza.addTopping(olives);
+    jeremyOrder.addTopping(olives);
     const capsicum = new Topping();
     capsicum.setName("Capsicum");
     capsicum.setPrice(10);
-    basketPizza.addTopping(capsicum);
-    basket.addToBasket(basketPizza);
+    jeremyOrder.addTopping(capsicum);
+    jeremy.addToBasket(jeremyOrder, jeremyBasket, jeremy);
     const expectedPizza = {
       name: "Peppy Paneer",
       category: "Exotic Veg",
@@ -34,21 +36,22 @@ describe("Basket", function () {
     const expectedCrust = { name: "Pan", price: 0 };
     const expectedTopping1 = { name: "Olives", price: 20 };
     const expectedTopping2 = { name: "Capsicum", price: 10 };
-    expect(basket.orders[0].pizza).toEqual(
+    expect(jeremyBasket.orders[0].pizza).toEqual(
       jasmine.objectContaining(expectedPizza)
     );
-    expect(basket.orders[0].crust).toEqual(
+    expect(jeremyBasket.orders[0].crust).toEqual(
       jasmine.objectContaining(expectedCrust)
     );
-    expect(basket.orders[0].toppings[0]).toEqual(
+    expect(jeremyBasket.orders[0].toppings[0]).toEqual(
       jasmine.objectContaining(expectedTopping1)
     );
-    expect(basket.orders[0].toppings[1]).toEqual(
+    expect(jeremyBasket.orders[0].toppings[1]).toEqual(
       jasmine.objectContaining(expectedTopping2)
     );
-    expect(basket.orders.length).toBe(1);
+    expect(jeremyBasket.orders.length).toBe(1);
   });
   it("calculates the cost of the order with one, two or three toppings", function () {
+    const bigSuze = new Customer();
     const basketNoToppings = new Basket();
     const basketOneTopping = new Basket();
     const basketTwoToppings = new Basket();
@@ -62,19 +65,19 @@ describe("Basket", function () {
     cheeseBurst.setName("Cheese Burst");
     cheeseBurst.setPrice(80);
     userStory1.addCrust(cheeseBurst);
-    basketNoToppings.addToBasket(userStory1);
+    bigSuze.addToBasket(userStory1, basketNoToppings, bigSuze);
     expect(basketNoToppings.calculatePrice()).toBe(4.56); // 3.8 + VAT
     const olives = new Topping();
     olives.setName("Olives");
     olives.setPrice(20);
     userStory1.addTopping(olives);
-    basketOneTopping.addToBasket(userStory1);
+    bigSuze.addToBasket(userStory1, basketOneTopping, bigSuze);
     expect(basketOneTopping.calculatePrice()).toBe(4.8); // 4 + VAT
     const corn = new Topping();
     corn.setName("Corn");
     corn.setPrice(10);
     userStory1.addTopping(corn);
-    basketTwoToppings.addToBasket(userStory1);
+    bigSuze.addToBasket(userStory1, basketTwoToppings, bigSuze);
     expect(basketTwoToppings.calculatePrice()).toBe(4.92); // 4.1 + VAT
   });
 });

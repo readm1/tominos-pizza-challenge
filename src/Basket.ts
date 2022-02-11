@@ -2,15 +2,14 @@ import { Crust } from "./Crust";
 import { Pizza } from "./Pizza";
 import { Topping } from "./Topping";
 import { Order } from "./Order";
+import { Customer } from "./Customer";
 
 export class Basket {
   orders: Order[];
+  customer: Customer;
   constructor() {
     this.orders = [];
-  }
-
-  addToBasket(order: Order): void {
-    this.orders.push(order);
+    this.customer = new Customer();
   }
 
   calculatePrice(): number {
@@ -18,7 +17,11 @@ export class Basket {
     let crustPrice = 0;
     let toppingsPrice = 0;
     for (const order of this.orders) {
-      pizzaPrice += order.pizza.price;
+      if (this.customer.corporate && order.pizza.category !== "Simple Veg") {
+        pizzaPrice += order.pizza.price * 0.8;
+      } else {
+        pizzaPrice += order.pizza.price;
+      }
       crustPrice += order.crust.price;
       for (const topping of order.toppings) {
         toppingsPrice += topping.price;
