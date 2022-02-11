@@ -82,11 +82,32 @@ describe("Customer", function () {
     const johnsonOrder = new Order();
     const johnsonBasket = new Basket();
     const farmhouse = new Pizza();
-    farmhouse.setName("Chees 'n' Tomato");
+    farmhouse.setName("Cheese 'n' Tomato");
     farmhouse.setCategory("Simple Veg");
     farmhouse.setPrice(2.5);
     johnsonOrder.addPizza(farmhouse);
     johnson.addToBasket(johnsonOrder, johnsonBasket, johnson);
     expect(johnsonBasket.calculatePrice()).toBe(3); // 2.5 + VAT
+  });
+  it("passes user story 3", function () {
+    const gerard = new Customer();
+    gerard.setCorporate(true);
+    const gerardOrder = new Order();
+    const gerardBasket = new Basket();
+    const margherita = new Pizza();
+    margherita.setName("Margherita");
+    margherita.setCategory("Simple Veg");
+    margherita.setPrice(2);
+    gerardOrder.addPizza(margherita);
+    const cheeseBurst = new Topping();
+    cheeseBurst.setName("Cheese Burst");
+    cheeseBurst.setPrice(80);
+    gerardOrder.addCrust(cheeseBurst);
+    const corn = new Topping();
+    corn.setName("Corn");
+    corn.setPrice(10);
+    gerardOrder.addTopping(corn);
+    gerard.addToBasket(gerardOrder, gerardBasket, gerard);
+    expect(gerardBasket.calculatePrice()).toBe(3); // 2.5 + VAT
   });
 });
