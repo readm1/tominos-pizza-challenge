@@ -17,7 +17,7 @@ export class Basket {
     let crustPrice = 0;
     let toppingsPrice = 0;
     for (const order of this.orders) {
-      if (this.customer.corporate && order.pizza.name !== "Simply Veg") {
+      if (this.customer.corporate && order.pizza.category !== "Simple Veg") {
         pizzaPrice += order.pizza.price * 0.8;
       } else {
         pizzaPrice += order.pizza.price;
