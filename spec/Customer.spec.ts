@@ -57,7 +57,7 @@ describe("Customer", function () {
     const jeffBasket = new Basket();
     const margherita = new Pizza();
     margherita.setName("Margherita");
-    margherita.setCategory("Simple Veg");
+    margherita.setCategory("Margherita");
     margherita.setPrice(2);
     jeffOrder.addPizza(margherita);
     jeff.addToBasket(jeffOrder, jeffBasket, jeff);
@@ -96,7 +96,7 @@ describe("Customer", function () {
     const gerardBasket = new Basket();
     const margherita = new Pizza();
     margherita.setName("Margherita");
-    margherita.setCategory("Simple Veg");
+    margherita.setCategory("Margherita");
     margherita.setPrice(2);
     gerardOrder.addPizza(margherita);
     const cheeseBurst = new Topping();
